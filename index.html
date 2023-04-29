@@ -1,32 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Calculator</title>
-        <meta charset="UTF-8">
-        <script src="script.js" defer></script>
-    </head>
-    <body>
+
+<head>
+    <title>Calculator</title>
+    <meta charset="UTF-8">
+    <script src="script.js" defer></script>
+    <link href="styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="calculatorBody">
         <h1>Calculator</h1>
         <div>
-        <label>Enter number 1</label>
-        <input type="number" value="0" id="num1">
+            <output id="display"></output>
         </div>
         <br><br>
-        <div>
-        <label>Enter number 2 (ignore this for square root)</label>
-        <input type="number" value="0" id="num2">
+        <div id="keyContainer">
+            <!-- <div id="containerOne"> -->
+            <button id="clear" name="clear" class="operator">C</button>
+            <button id="power" name="power" class="operator">^</button>
+            <button id="squareroot" name="squareroot" class="operator">√</button>
+            <button id="modulus" name="modulus" class="operator">%</button>
+            <button id="1" name="1" class="number">1</button>
+            <button id="2" name="2" class="number">2</button>
+            <button id="3" name="3" class="number">3</button>
+            <button id="divide" name="divide" class="operator">/</button>
+            <button id="4" name="4" class="number">4</button>
+            <button id="5" name="5" class="number">5</button>
+            <button id="6" name="6" class="number">6</button>
+            <button id="multiply" name="multiply" class="operator">x</button>
+            <button id="7" name="7" class="number">7</button>
+            <button id="8" name="8" class="number">8</button>
+            <button id="9" name="9" class="number">9</button>
+            <button id="subtract" name="subtract" class="operator">-</button>
+            <button id="0" name="0" class="number">0</button>
+            <button id="00" name="00" class="number">00</button>
+            <button id="equals" name="equals" class="operator">=</button>
+            <button id="add" name="add" class="operator">+</button>
         </div>
-        <br><br>
-        <div>
-        <button id="add" name="add" >Add</button>
-        <button id="subtraction" name="subtraction">Subtract</button>
-        <button id="multiply" name="multiply">Multiply</button>
-        <button id="divide" name="divide">Divide</button>
-        <button id="modulus" name="modulus">Modulus</button>
-        <button id="power" name="power">power</button>
-        <button id="squareroot" name="squareroot">Square root</button>
-        <!-- <button>Click for result</button> -->
-        </div>
-        <p id="result">Result: </p>
-    </body>
+    </div>
+</body>
+
 </html>

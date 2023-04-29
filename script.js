@@ -57,11 +57,11 @@ function calculate(e) {
             break;
     }
     const result = document.querySelector("#result");
-    result.textContent = "Result: "+output;
+    result.textContent = "Result: " + output;
 
 }
 
 //Logics
-const addBtn = document.querySelectorAll("button");
-addBtn.addEventListener("click", (e)=>{calculate(e)});
+const buttons = document.querySelectorAll("button");
+buttons.forEach(button => button.addEventListener("click", (e) => { calculate(e) }));
 
