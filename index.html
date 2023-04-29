@@ -3,21 +3,30 @@
     <head>
         <title>Calculator</title>
         <meta charset="UTF-8">
+        <script src="script.js" defer></script>
     </head>
     <body>
         <h1>Calculator</h1>
+        <div>
         <label>Enter number 1</label>
-        <input type="number" value="0">
-        <label>Enter number 2</label>
-        <input type="number" value="0">
-        <button>Add</button>
-        <button>Subtract</button>
-        <button>Multiply</button>
-        <button>Divide</button>
-        <button>Modulus</button>
-        <button>power</button>
-        <button>Square root</button>
-        <button>Click for result</button>
-        <p>Result: </p>
+        <input type="number" value="0" id="num1">
+        </div>
+        <br><br>
+        <div>
+        <label>Enter number 2 (ignore this for square root)</label>
+        <input type="number" value="0" id="num2">
+        </div>
+        <br><br>
+        <div>
+        <button id="add" name="add" >Add</button>
+        <button id="subtraction" name="subtraction">Subtract</button>
+        <button id="multiply" name="multiply">Multiply</button>
+        <button id="divide" name="divide">Divide</button>
+        <button id="modulus" name="modulus">Modulus</button>
+        <button id="power" name="power">power</button>
+        <button id="squareroot" name="squareroot">Square root</button>
+        <!-- <button>Click for result</button> -->
+        </div>
+        <p id="result">Result: </p>
     </body>
 </html>
