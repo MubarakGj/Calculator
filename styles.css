@@ -43,7 +43,6 @@ h1 {
     position: relative;
     align-items: flex-end;
     justify-content: end;
-
 }
 
 #display {
@@ -75,6 +74,11 @@ button {
     border-radius: 10px;
     color: white;
     margin: 3px;
+
+}
+
+button:active {
+    animation: press 0.2s 1 linear;
 }
 
 .number {
@@ -86,7 +90,7 @@ button {
     background-color: #f69906;
 }
 
-#clear{
+#clear {
     background-color: gainsboro;
     color: black;
 }
@@ -107,4 +111,18 @@ button {
 
 ::-webkit-scrollbar-thumb {
     background-color: #859f72;
+}
+
+@keyframes press {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.92);
+    }
+
+    to {
+        transform: scale(1);
+    }
 }
