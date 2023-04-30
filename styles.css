@@ -12,6 +12,7 @@ body {
     display: flex;
     align-content: center;
     justify-content: center;
+    font-weight: 500;
 }
 
 #calculatorBody {
@@ -81,19 +82,19 @@ button {
 }
 
 .operator,
-.equals,
-#clear {
+.equals {
     background-color: #f69906;
 }
 
-#clear {
+#clear{
     background-color: gainsboro;
     color: black;
 }
 
-#displayContainer> ::-webkit-scrollbar-track {
-    background: #859f72;
-    margin-block: 10px;
+#backspace {
+    background-color: gainsboro;
+    color: black;
+    font-size: large;
 }
 
 ::-webkit-scrollbar {

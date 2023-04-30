@@ -67,9 +67,15 @@ function calculate(operation) {
 //read entered numeric value
 let numerics = document.querySelectorAll(".number");
 numerics.forEach(numericBtn => numericBtn.addEventListener("click", (e) => {
-    temp += e.target.name;
-    displayString += e.target.name;
-    displayValues(displayString);
+    if (e.target.name !== ".") {
+        temp += e.target.name;
+        displayString += e.target.name;
+        displayValues(displayString);
+    } else if (e.target.name === "." && !temp.includes(".")) {
+        temp += e.target.name;
+        displayString += e.target.name;
+        displayValues(displayString);
+    }
 }));
 
 // set the numeric value when operator is clicked
@@ -78,9 +84,11 @@ operators.forEach(operator => operator.addEventListener("click", (e) => {
     if (temp !== "" || backup !== undefined) {
         if (e.target.name !== "equals") {
             displayString += ` ${e.target.textContent} `;
-            values.push(Number(temp));
+            if (temp !== "") {
+                values.push(Number(temp));
+            }
             if (values.length >= 2) {
-                mathOpResult = calculate(operation);
+                mathOpResult = roundOffDecimals(calculate(operation));
                 values = [];
                 values[0] = mathOpResult;
             }
@@ -89,10 +97,10 @@ operators.forEach(operator => operator.addEventListener("click", (e) => {
         else {
             values.push(Number(temp));
             if (values.length >= 2) {
-                mathOpResult = calculate(operation);
+                mathOpResult = roundOffDecimals(calculate(operation));
                 values = [];
                 values[0] = mathOpResult;
-                displayString = mathOpResult;
+                displayString = mathOpResult.toString();
                 backup = mathOpResult;
             }
         }
@@ -119,3 +127,18 @@ function displayValues(displayVal) {
     display.textContent = displayVal;
 }
 
+//rounds of input to 2 decimal points
+function roundOffDecimals(numberValue){
+    if(numberValue.toString().includes(".")){
+        numberValue = numberValue.toFixed(1);
+    }
+    return numberValue;
+}
+
+//remove last entered number when backspace pressed
+const backspaceBtn = document.querySelector("#backspace"); 
+backspaceBtn.addEventListener("click", () => {
+    displayString = displayString.substring(0,displayString.length-1);
+    temp = temp.substring(0,temp.length-1);
+    displayValues(displayString);
+});
