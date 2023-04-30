@@ -1,8 +1,9 @@
-// let mathOpResult = 1;
-let displayValue = null;
+let displayString = "";
 let operation = null;
 let values = [];
 let temp = "";
+let mathOpResult = 0;
+let backup;
 
 //Mathematical functions
 function add(num1, num2) {
@@ -36,8 +37,6 @@ function squareRoot(num) {
 function calculate(operation) {
     const num1 = values[0];
     const num2 = values[1];
-    // let num1 = Number(input1);
-    // let num2 = Number(input2);
     let output = 0;
     switch (operation) {
         case "add":
@@ -62,51 +61,61 @@ function calculate(operation) {
             output = squareRoot(num1);
             break;
     }
-
     return output;
-
 }
 
 //read entered numeric value
 let numerics = document.querySelectorAll(".number");
 numerics.forEach(numericBtn => numericBtn.addEventListener("click", (e) => {
     temp += e.target.name;
-    display.textContent = (display.textContent === "") ? temp : `${display.textContent}${e.target.name}`
+    displayString += e.target.name;
+    displayValues(displayString);
 }));
 
 // set the numeric value when operator is clicked
 let operators = document.querySelectorAll(".operator");
 operators.forEach(operator => operator.addEventListener("click", (e) => {
-    if ((temp.length > 0) && (e.target.name !== "equals")) {
-        operation = e.target.name;
-        display.textContent = `${display.textContent} ${e.target.textContent} `;
+    if (temp !== "" || backup !== undefined) {
+        if (e.target.name !== "equals") {
+            displayString += ` ${e.target.textContent} `;
+            values.push(Number(temp));
+            if (values.length >= 2) {
+                mathOpResult = calculate(operation);
+                values = [];
+                values[0] = mathOpResult;
+            }
+            operation = e.target.name;
+        }
+        else {
+            values.push(Number(temp));
+            if (values.length >= 2) {
+                mathOpResult = calculate(operation);
+                values = [];
+                values[0] = mathOpResult;
+                displayString = mathOpResult;
+                backup = mathOpResult;
+            }
+        }
+        temp = "";
+        displayValues(displayString);
     }
-    if(temp.length !== 0){
-        values.push(Number(temp));
-    }
-    console.log(values);
-    temp = "";
-    
 }));
-
-//calculate result and display
-const display = document.querySelector("#display");
-const equalBtn = document.querySelector("#equals");
-equalBtn.addEventListener("click", (e) => {
-    if ((values.length > 0) && (values.every(num => num !== ""))) {
-        displayValue = calculate(operation);
-        display.textContent = displayValue;
-        values = [];
-    }
-});
 
 //Clear screen
 const clear = document.querySelector("#clear");
 clear.addEventListener("click", () => {
-    display.textContent = "";
-    displayValue = "";
+    mathOpResult = 0;
+    displayString = "";
     temp = "";
     values = [];
+    operation = "";
+    backup = undefined;
+    displayValues(displayString);
 });
 
+const display = document.querySelector("#display");
+//display the passed content
+function displayValues(displayVal) {
+    display.textContent = displayVal;
+}
 
