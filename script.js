@@ -1,3 +1,9 @@
+// let mathOpResult = 1;
+let displayValue = null;
+let operation = null;
+let values = [];
+let temp = "";
+
 //Mathematical functions
 function add(num1, num2) {
     return num1 + num2;
@@ -27,13 +33,13 @@ function squareRoot(num) {
     return Math.sqrt(num);
 }
 
-function calculate(e) {
-    const input1 = document.querySelector("#num1").value;
-    const input2 = document.querySelector("#num2").value;
-    let num1 = Number(input1);
-    let num2 = Number(input2);
+function calculate(operation) {
+    const num1 = values[0];
+    const num2 = values[1];
+    // let num1 = Number(input1);
+    // let num2 = Number(input2);
     let output = 0;
-    switch (e.target.name) {
+    switch (operation) {
         case "add":
             output = add(num1, num2);
             break;
@@ -56,12 +62,51 @@ function calculate(e) {
             output = squareRoot(num1);
             break;
     }
-    const result = document.querySelector("#result");
-    result.textContent = "Result: " + output;
+
+    return output;
 
 }
 
-//Logics
-const buttons = document.querySelectorAll("button");
-buttons.forEach(button => button.addEventListener("click", (e) => { calculate(e) }));
+//read entered numeric value
+let numerics = document.querySelectorAll(".number");
+numerics.forEach(numericBtn => numericBtn.addEventListener("click", (e) => {
+    temp += e.target.name;
+    display.textContent = (display.textContent === "") ? temp : `${display.textContent}${e.target.name}`
+}));
+
+// set the numeric value when operator is clicked
+let operators = document.querySelectorAll(".operator");
+operators.forEach(operator => operator.addEventListener("click", (e) => {
+    if ((temp.length > 0) && (e.target.name !== "equals")) {
+        operation = e.target.name;
+        display.textContent = `${display.textContent} ${e.target.textContent} `;
+    }
+    if(temp.length !== 0){
+        values.push(Number(temp));
+    }
+    console.log(values);
+    temp = "";
+    
+}));
+
+//calculate result and display
+const display = document.querySelector("#display");
+const equalBtn = document.querySelector("#equals");
+equalBtn.addEventListener("click", (e) => {
+    if ((values.length > 0) && (values.every(num => num !== ""))) {
+        displayValue = calculate(operation);
+        display.textContent = displayValue;
+        values = [];
+    }
+});
+
+//Clear screen
+const clear = document.querySelector("#clear");
+clear.addEventListener("click", () => {
+    display.textContent = "";
+    displayValue = "";
+    temp = "";
+    values = [];
+});
+
 

@@ -1,18 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace&family=Roboto+Slab&display=swap');
-html{
+@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace&family=Roboto+Slab&family=Orbitron:wght@500&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap'); */
+
+html {
     font-family: 'Roboto Slab', serif;
-    background-color:aquamarine;
+    background-color: aquamarine;
     margin-top: 50px;
     margin-bottom: 50px;
 }
 
-body{
+body {
     display: flex;
     align-content: center;
     justify-content: center;
 }
 
-#calculatorBody{
+#calculatorBody {
     flex: none;
     background-color: #161f30;
     height: 730px;
@@ -21,7 +23,7 @@ body{
     border-radius: 20px;
 }
 
-h1{
+h1 {
     text-align: center;
     font-family: 'Bruno Ace', 'cursive';
     color: white;
@@ -30,25 +32,41 @@ h1{
     padding: 20px;
 }
 
-#display{
+#displayContainer {
     background-color: #859f72;
     width: 80%;
     height: 100px;
     margin: 0 auto;
-    display: block;
+    display: flex;
     border-radius: 10px;
+    position: relative;
+    align-items: flex-end;
+    justify-content: end;
+
 }
 
-#keyContainer{
+#display {
+    width: 100%;
+    max-height: 100px;
+    font-family: Orbitron;
+    font-size: 50px;
+    text-align: right;
+    overflow-wrap: break-word;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    scrollbar-color: #859f72;
+}
+
+#keyContainer {
     margin: 5% 10% 0 10%;
     display: grid;
-    grid-template-columns: repeat(4,120px);
+    grid-template-columns: repeat(4, 120px);
     column-gap: 8px;
     row-gap: 2px;
 }
 
-button{
-    font-size: x-large;
+button {
+    font-size: 25px;
     font-weight: bold;
     text-align: center;
     width: 120px;
@@ -58,15 +76,34 @@ button{
     margin: 3px;
 }
 
-.number{
+.number {
     background-color: #212635;
 }
 
-.operator{
+.operator,
+.equals,
+#clear {
     background-color: #f69906;
 }
 
-#clear{
+#clear {
     background-color: gainsboro;
     color: black;
+}
+
+#displayContainer> ::-webkit-scrollbar-track {
+    background: #859f72;
+    margin-block: 10px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #859f72;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #859f72;
 }
